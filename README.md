@@ -68,8 +68,24 @@ The API validates employee input and handles duplicate email addresses, invalid 
 ```
 
 ## Database Configuration
-- Database: PostgreSQL
-- Database name: `employee_management`
-- Default port: `5432`
 
-Configure your own local database credentials before running the application.
+- **Database:** PostgreSQL
+- **Database name:** `employee_management`
+- **Host:** `localhost`
+- **Port:** `5432`
+- **Username:** Configure your local PostgreSQL username.
+- **Password:** Configure locally using environment variables.
+
+### Setup
+
+1. Start PostgreSQL.
+2. Create the database:
+
+   ```sql
+   CREATE DATABASE employee_management;
+   ```
+
+3. Configure `DB_USERNAME` and `DB_PASSWORD` in your local environment.
+4. Run the Spring Boot application.
+
+Hibernate is configured with `ddl-auto=update` to update the database schema automatically when the application starts.
