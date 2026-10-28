@@ -1,19 +1,31 @@
-Employee Management System (EMS)
-API Documentation
-1. Overview
-The Employee Management System provides REST APIs to create, retrieve, update, delete, search, and paginate employee records.
-Base URL: http://localhost:8080
-Content-Type: application/json
-2. Create Employee
-Endpoint: POST /api/employees
-Sample Request:
+# Employee Management System (EMS) API Documentation
+
+## 1. Overview
+
+The Employee Management System provides REST APIs to manage employee records, including creating, retrieving, updating, deleting, searching, and pagination.
+
+- **Base URL:** `http://localhost:8080`
+- **Content-Type:** `application/json`
+- **Database:** PostgreSQL
+
+## 2. Create Employee
+
+**Endpoint:** `POST /api/employees`
+
+**Sample Request:**
+
+```json
 {
   "name": "Anu Thomas",
   "email": "anu.thomas@example.com",
   "department": "IT",
   "salary": 45000
 }
-Sample Success Response — HTTP 201 Created:
+```
+
+**Sample Response — HTTP 201 Created:**
+
+```json
 {
   "responseStatus": {
     "errorCode": "0",
@@ -27,9 +39,15 @@ Sample Success Response — HTTP 201 Created:
     "salary": 45000
   }
 }
-3. Get All Employees
-Endpoint: GET /api/employees
-Sample Response — HTTP 200 OK:
+```
+
+## 3. Get All Employees
+
+**Endpoint:** `GET /api/employees`
+
+**Sample Response — HTTP 200 OK:**
+
+```json
 {
   "responseStatus": {
     "errorCode": "0",
@@ -42,121 +60,69 @@ Sample Response — HTTP 200 OK:
       "email": "anu.thomas@example.com",
       "department": "IT",
       "salary": 45000
-    },
-    {
-      "id": 7,
-      "name": "Vinu Thomas",
-      "email": "vinu.thomas@example.com",
-      "department": "IT",
-      "salary": 45000
     }
   ]
 }
-4. Get Employee by ID
-Endpoint: GET /api/employees/{id}
-Example: GET /api/employees/7
-Sample Response — HTTP 200 OK:
-{
-  "responseStatus": {
-    "errorCode": "0",
-    "errorMsg": "Success"
-  },
-  "responseBody": {
-    "id": 7,
-    "name": "Vinu Thomas",
-    "email": "vinu.thomas@example.com",
-    "department": "IT",
-    "salary": 45000
-  }
-}
+```
 
-5. Update Employee
-Endpoint: PUT /api/employees/{id}
-Example: PUT /api/employees/6
-Sample Request:
+## 4. Get Employee by ID
+
+**Endpoint:** `GET /api/employees/{id}`
+
+**Example:** `GET /api/employees/6`
+
+Returns the employee matching the specified ID.
+
+## 5. Update Employee
+
+**Endpoint:** `PUT /api/employees/{id}`
+
+**Example:** `PUT /api/employees/6`
+
+**Sample Request:**
+
+```json
 {
   "name": "Anu Thomas",
   "email": "anu.thomas@example.com",
   "department": "Finance",
   "salary": 50000
 }
-Sample Response — HTTP 200 OK:
-{
-  "responseStatus": {
-    "errorCode": "0",
-    "errorMsg": "Success"
-  },
-  "responseBody": {
-    "id": 6,
-    "name": "Anu Thomas",
-    "email": "anu.thomas@example.com",
-    "department": "Finance",
-    "salary": 50000
-  }
-}
-6. Delete Employee
-Endpoint: DELETE /api/employees/{id}
-Example: DELETE /api/employees/7
-Expected Result: HTTP 200 OK.
-{
-  "responseStatus": {
-    "errorCode": "0",
-    "errorMsg": "Employee deleted successfully"
-  },
-  "responseBody": null
-}
+```
 
-7. Search Employees
-Endpoint: GET /api/employees/search?name=Anu
-Description: Retrieves employees whose names match the search term.
-Sample Response: A list of matching employee records inside responseBody.
-{
-  "responseStatus": {
-    "errorCode": "0",
-    "errorMsg": "Success"
-  },
-  "responseBody": [
-    {
-      "id": 6,
-      "name": "Anu Thomas",
-      "email": "anu.thomas@example.com",
-      "department": "Finance",
-      "salary": 50000
-    }
-  ]
-}
+Returns the updated employee details on success.
 
+## 6. Delete Employee
 
-8. Pagination
-Endpoint: GET /api/employees/pagination?page=0&size=10
-Description:
-•	page: Zero-based page number.
-•	size: Number of records per page.
-Sample Response: A page of employee records with pagination metadata, such as total elements, total pages, current page, and page size.
-{
-  "responseStatus": {
-    "errorCode": "0",
-    "errorMsg": "Success"
-  },
-  "responseBody": {
-    "content": [
-      {
-        "id": 6,
-        "name": "Anu Thomas",
-        "email": "anu.thomas@example.com",
-        "department": "Finance",
-        "salary": 50000
-      }
-    ],
-    "totalElements": 1,
-    "totalPages": 1,
-    "page": 0,
-    "size": 10
-  }
-}
+**Endpoint:** `DELETE /api/employees/{id}`
 
-9. Error Responses
-Employee Not Found — HTTP 404 Not Found
+**Example:** `DELETE /api/employees/6`
+
+Deletes the employee with the specified ID.
+
+**Expected Result:** HTTP 200 OK, with a success message.
+
+## 7. Search Employees
+
+**Endpoint:** `GET /api/employees/search?name=Anu`
+
+Returns employees whose names match the provided search term.
+
+## 8. Pagination
+
+**Endpoint:** `GET /api/employees/pagination?page=0&size=10`
+
+**Parameters:**
+- `page`: Zero-based page number.
+- `size`: Number of records per page.
+
+Returns a page of employee records with pagination details, depending on the API response structure.
+
+## 9. Error Responses
+
+### Employee Not Found — HTTP 404
+
+```json
 {
   "responseStatus": {
     "errorCode": "404",
@@ -164,7 +130,11 @@ Employee Not Found — HTTP 404 Not Found
   },
   "responseBody": null
 }
-Duplicate Email — HTTP 409 Conflict
+```
+
+### Duplicate Email — HTTP 409
+
+```json
 {
   "responseStatus": {
     "errorCode": "409",
@@ -172,7 +142,11 @@ Duplicate Email — HTTP 409 Conflict
   },
   "responseBody": null
 }
-Validation Error — HTTP 400 Bad Request
+```
+
+### Validation Error — HTTP 400
+
+```json
 {
   "responseStatus": {
     "errorCode": "400",
@@ -182,4 +156,12 @@ Validation Error — HTTP 400 Bad Request
     "email": "Please provide a valid email"
   }
 }
+```
 
+## 10. API Testing
+
+You can test the APIs using Swagger UI:
+
+`http://localhost:8080/swagger-ui/index.html`
+
+**Note:** The sample responses are illustrative. Verify the actual endpoint paths, HTTP status codes, and response structures against your running application before submission.
