@@ -26,7 +26,6 @@ A REST API for managing employee records, developed using Java 17, Spring Boot, 
    ```
 
 3. Configure the database URL, username, and password in `src/main/resources/application.properties`.
-4. Do not commit database passwords to GitHub.
 
 ## Run the Application
 1. Clone this repository.
