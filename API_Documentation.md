@@ -158,10 +158,3 @@ Returns a page of employee records with pagination details, depending on the API
 }
 ```
 
-## 10. API Testing
-
-You can test the APIs using Swagger UI:
-
-`http://localhost:8080/swagger-ui/index.html`
-
-**Note:** The sample responses are illustrative. Verify the actual endpoint paths, HTTP status codes, and response structures against your running application before submission.
