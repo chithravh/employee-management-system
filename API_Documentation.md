@@ -108,15 +108,60 @@ Deletes the employee with the specified ID.
 
 Returns employees whose names match the provided search term.
 
+**Sample Response — HTTP 200 OK:**
+
+```json
+{
+  "responseStatus": {
+    "errorCode": "0",
+    "errorMsg": "Success"
+  },
+  "responseBody": [
+    {
+      "id": 6,
+      "name": "Anu Thomas",
+      "email": "anu.thomas@example.com",
+      "department": "Finance",
+      "salary": 50000
+    }
+  ]
+}
+```
+
 ## 8. Pagination
 
 **Endpoint:** `GET /api/employees/pagination?page=0&size=10`
 
-**Parameters:**
+**Query Parameters:**
 - `page`: Zero-based page number.
 - `size`: Number of records per page.
 
-Returns a page of employee records with pagination details, depending on the API response structure.
+**Sample Response — HTTP 200 OK:**
+
+```json
+{
+  "responseStatus": {
+    "errorCode": "0",
+    "errorMsg": "Success"
+  },
+  "responseBody": {
+    "content": [
+      {
+        "id": 6,
+        "name": "Anu Thomas",
+        "email": "anu.thomas@example.com",
+        "department": "Finance",
+        "salary": 50000
+      }
+    ],
+    "totalElements": 1,
+    "totalPages": 1,
+    "page": 0,
+    "size": 10
+  }
+}
+```
+
 
 ## 9. Error Responses
 
